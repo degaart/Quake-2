@@ -596,6 +596,15 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
     MSG				msg;
 	int				time, oldtime, newtime;
 	char			*cddir;
+	HWND			consoleHandle;
+
+	AllocConsole();
+	freopen("conin$","r",stdin);
+	freopen("conout$","w",stdout);
+	freopen("conout$","w",stderr);
+	consoleHandle = GetConsoleWindow();
+	MoveWindow(consoleHandle,1,1,680,480,1);
+	printf("[sys_win.c] Console initialized.\n");
 
     /* previous instances do not exist in Win32 */
     if (hPrevInstance)
